@@ -1,0 +1,21 @@
+{
+  "archive": "blackfury-exact-v1.0.2-windows-x64-sm120a.zip",
+  "archive_sha256": "297a8de09fb620cc41f89dc413aeeddf065350d5f105ab9097fdccb4b70087f0",
+  "exe_sha256": "0742736bdb430e5a4d25cc300beee759a79278b62d406a2fc9331972ea98a5bf",
+  "files": 28,
+  "startup_seconds": 20.9,
+  "context": 131072,
+  "loopback_served_model": "blackfury-exact-v1.0.2",
+  "models_http_status": 200,
+  "chat_http_status": 200,
+  "prompt_tokens": 47,
+  "completion_tokens": 12,
+  "reasoning_effort": "low",
+  "accepted": 16,
+  "proposed": 18,
+  "token_digest_reported": "c4317e9f56c9",
+  "matches_installed_digest_prefix": true,
+  "cuda_device_images_identified": 20,
+  "ordinary_cuda_build_inputs_identified": 114,
+  "gpu_process_retired": true
+}

@@ -1,0 +1,169 @@
+{
+  "fixture": "129,024 input and 2,048 output tokens. Greedy, seed 42, low effort, thinking budget 2048, DFlash2 active. All archived v1.0.2 request JSON objects equal the published v1.0.1 request template.",
+  "method": "Medians across separate November qualification runs on the same machine and identical request contents. Native decode excludes first-token time. Cold prefill starts with zero cached tokens; warm decode requests reused 128,896 tokens.",
+  "old_source": "../blackfury-stage44/summary.json",
+  "new_source": "fixed-qualification.json",
+  "median": {
+    "v1.0.1": {
+      "cold_decode_tok_s": 305.31672038006775,
+      "warm_decode_tok_s": 309.5339942197916,
+      "cold_prefill_s": 50.368198199999995,
+      "cold_n": 2,
+      "warm_n": 6
+    },
+    "v1.0.2": {
+      "cold_decode_tok_s": 333.30177251576,
+      "warm_decode_tok_s": 330.7743699471367,
+      "cold_prefill_s": 48.4795848,
+      "cold_n": 3,
+      "warm_n": 3
+    }
+  },
+  "all_output_token_hashes_equal": true,
+  "samples": {
+    "v1.0.1": [
+      {
+        "cell": "B1",
+        "phase": "cold",
+        "native_tps": 305.36824546176837,
+        "prefill_seconds": 50.3608207,
+        "cached_tokens": 0,
+        "token_sha256": "c11a7dd42364077e8c4ab67fcf4196dfaa25aa3b22c4e2d0c5b671132990ad72",
+        "input_tokens": 129024,
+        "output_tokens": 2048
+      },
+      {
+        "cell": "B1",
+        "phase": "warm",
+        "native_tps": 309.4194007203743,
+        "prefill_seconds": 0.2313234,
+        "cached_tokens": 128896,
+        "token_sha256": "c11a7dd42364077e8c4ab67fcf4196dfaa25aa3b22c4e2d0c5b671132990ad72",
+        "input_tokens": 129024,
+        "output_tokens": 2048
+      },
+      {
+        "cell": "B1",
+        "phase": "warm2",
+        "native_tps": 309.55712326251614,
+        "prefill_seconds": 0.2303254,
+        "cached_tokens": 128896,
+        "token_sha256": "c11a7dd42364077e8c4ab67fcf4196dfaa25aa3b22c4e2d0c5b671132990ad72",
+        "input_tokens": 129024,
+        "output_tokens": 2048
+      },
+      {
+        "cell": "B1",
+        "phase": "warm3",
+        "native_tps": 309.5760039790271,
+        "prefill_seconds": 0.2309248,
+        "cached_tokens": 128896,
+        "token_sha256": "c11a7dd42364077e8c4ab67fcf4196dfaa25aa3b22c4e2d0c5b671132990ad72",
+        "input_tokens": 129024,
+        "output_tokens": 2048
+      },
+      {
+        "cell": "B2",
+        "phase": "cold",
+        "native_tps": 305.2651952983672,
+        "prefill_seconds": 50.3755757,
+        "cached_tokens": 0,
+        "token_sha256": "c11a7dd42364077e8c4ab67fcf4196dfaa25aa3b22c4e2d0c5b671132990ad72",
+        "input_tokens": 129024,
+        "output_tokens": 2048
+      },
+      {
+        "cell": "B2",
+        "phase": "warm",
+        "native_tps": 309.0382236802962,
+        "prefill_seconds": 0.2304117,
+        "cached_tokens": 128896,
+        "token_sha256": "c11a7dd42364077e8c4ab67fcf4196dfaa25aa3b22c4e2d0c5b671132990ad72",
+        "input_tokens": 129024,
+        "output_tokens": 2048
+      },
+      {
+        "cell": "B2",
+        "phase": "warm2",
+        "native_tps": 309.5760039790271,
+        "prefill_seconds": 0.2313363,
+        "cached_tokens": 128896,
+        "token_sha256": "c11a7dd42364077e8c4ab67fcf4196dfaa25aa3b22c4e2d0c5b671132990ad72",
+        "input_tokens": 129024,
+        "output_tokens": 2048
+      },
+      {
+        "cell": "B2",
+        "phase": "warm3",
+        "native_tps": 309.5108651770671,
+        "prefill_seconds": 0.2306794,
+        "cached_tokens": 128896,
+        "token_sha256": "c11a7dd42364077e8c4ab67fcf4196dfaa25aa3b22c4e2d0c5b671132990ad72",
+        "input_tokens": 129024,
+        "output_tokens": 2048
+      }
+    ],
+    "v1.0.2": [
+      {
+        "phase": "cold",
+        "cell": "Pair1",
+        "native_tps": 333.78511999958255,
+        "prefill_seconds": 48.4342769,
+        "cached_tokens": 0,
+        "token_sha256": "c11a7dd42364077e8c4ab67fcf4196dfaa25aa3b22c4e2d0c5b671132990ad72",
+        "input_tokens": 129024,
+        "output_tokens": 2048
+      },
+      {
+        "phase": "warm",
+        "cell": "Pair1",
+        "native_tps": 330.88496241966357,
+        "prefill_seconds": 0.2311902,
+        "cached_tokens": 128896,
+        "token_sha256": "c11a7dd42364077e8c4ab67fcf4196dfaa25aa3b22c4e2d0c5b671132990ad72",
+        "input_tokens": 129024,
+        "output_tokens": 2048
+      },
+      {
+        "phase": "cold",
+        "cell": "Pair2",
+        "native_tps": 332.9001944563222,
+        "prefill_seconds": 48.4795848,
+        "cached_tokens": 0,
+        "token_sha256": "c11a7dd42364077e8c4ab67fcf4196dfaa25aa3b22c4e2d0c5b671132990ad72",
+        "input_tokens": 129024,
+        "output_tokens": 2048
+      },
+      {
+        "phase": "warm",
+        "cell": "Pair2",
+        "native_tps": 330.00650662560207,
+        "prefill_seconds": 0.2323414,
+        "cached_tokens": 128896,
+        "token_sha256": "c11a7dd42364077e8c4ab67fcf4196dfaa25aa3b22c4e2d0c5b671132990ad72",
+        "input_tokens": 129024,
+        "output_tokens": 2048
+      },
+      {
+        "phase": "cold",
+        "cell": "Pair3",
+        "native_tps": 333.30177251576,
+        "prefill_seconds": 48.5085974,
+        "cached_tokens": 0,
+        "token_sha256": "c11a7dd42364077e8c4ab67fcf4196dfaa25aa3b22c4e2d0c5b671132990ad72",
+        "input_tokens": 129024,
+        "output_tokens": 2048
+      },
+      {
+        "phase": "warm",
+        "cell": "Pair3",
+        "native_tps": 330.7743699471367,
+        "prefill_seconds": 0.2322707,
+        "cached_tokens": 128896,
+        "token_sha256": "c11a7dd42364077e8c4ab67fcf4196dfaa25aa3b22c4e2d0c5b671132990ad72",
+        "input_tokens": 129024,
+        "output_tokens": 2048
+      }
+    ]
+  }
+}

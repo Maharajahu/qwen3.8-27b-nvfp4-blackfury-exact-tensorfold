@@ -1,0 +1,63 @@
+{
+  "common_request": {
+    "model": "release-comparison",
+    "max_tokens": 1024,
+    "temperature": 0,
+    "seed": 42,
+    "thinking_budget": 128,
+    "reasoning_effort": "low",
+    "stream": true,
+    "stream_options": {
+      "include_usage": true
+    },
+    "return_token_ids": true,
+    "draft": true,
+    "chat_template_kwargs": {
+      "enable_thinking": true
+    }
+  },
+  "messages_recipe": "Set messages to a system message with system followed by a user message with user_instruction, then two LF characters, then shared_input_jsonl (without trailing LF).",
+  "tasks": {
+    "field": {
+      "system": "You are the field contributor. Start your answer promptly.",
+      "user_instruction": "A town has counted ferry trips. Write a 2,000-word reported magazine feature for a general reader using the observations below. Distinguish observations from interpretation. Bring the reader into the setting, explain service differences and competing causes, and give concrete examples. Use continuous English prose without a table, code, or a bullet list."
+    },
+    "etl": {
+      "system": "You are the etl contributor. Start your answer promptly.",
+      "user_instruction": "Implement a complete Python 3 standard-library command line tool for the daily ferry records below. Read JSONL, reject malformed lines with useful diagnostics, detect duplicates, produce deterministic per-site totals and a rolling-seven-day view, and support CSV export. Return source code only and include a comprehensive unittest suite after the implementation."
+    },
+    "study": {
+      "system": "You are the study contributor. Start your answer promptly.",
+      "user_instruction": "Write a 2,000-word explanatory essay about the limits of small observational data sets for a technically curious general reader. Use the ferry service observations below as your running example, from measurement and aggregation through uncertainty and a concrete follow-up study. Write polished continuous prose with concrete numerical examples."
+    },
+    "audit": {
+      "system": "You are the audit contributor. Start your answer promptly.",
+      "user_instruction": "Create a complete JavaScript ES module for auditing the daily service records below. Design a streaming NDJSON parser tolerant of chunk boundaries, typed validation diagnostics, stable summaries by site, and deterministic reports. Include runnable node:test coverage in the same response for malformed, duplicate, partial and out-of-order data. Output code only."
+    },
+    "memo": {
+      "system": "You are the memo contributor. Start your answer promptly.",
+      "user_instruction": "Write a 2,000-word public briefing in plain English for island residents about the ferry operations data below. Explain what a scheduled-to-completed comparison can show, how weather and sample selection affect interpretation, and a practical plan to improve the data. Write full paragraphs and use a measured, direct voice."
+    },
+    "sync": {
+      "system": "You are the sync contributor. Start your answer promptly.",
+      "user_instruction": "Implement a complete Python 3 SQLite-backed registry for the daily ferry observations below. Include schema migration, a JSONL import with idempotency, transactional conflict handling, a date-range report and an export CLI. Include runnable tests for duplicate imports and rollback. Return well-structured source code only."
+    }
+  },
+  "shared_input_jsonl": "{\"day\":\"2026-04-01\",\"site\":\"east\",\"scheduled\":23,\"completed\":21,\"condition\":\"clear\"}\n{\"day\":\"2026-04-02\",\"site\":\"west\",\"scheduled\":34,\"completed\":34,\"condition\":\"fog\"}\n{\"day\":\"2026-04-03\",\"site\":\"north\",\"scheduled\":26,\"completed\":33,\"condition\":\"rain\"}\n{\"day\":\"2026-04-04\",\"site\":\"east\",\"scheduled\":37,\"completed\":32,\"condition\":\"wind\"}\n{\"day\":\"2026-04-05\",\"site\":\"west\",\"scheduled\":29,\"completed\":31,\"condition\":\"clear\"}\n{\"day\":\"2026-04-06\",\"site\":\"north\",\"scheduled\":40,\"completed\":30,\"condition\":\"fog\"}\n{\"day\":\"2026-04-07\",\"site\":\"east\",\"scheduled\":32,\"completed\":29,\"condition\":\"rain\"}\n{\"day\":\"2026-04-08\",\"site\":\"west\",\"scheduled\":24,\"completed\":28,\"condition\":\"wind\"}\n{\"day\":\"2026-04-09\",\"site\":\"north\",\"scheduled\":35,\"completed\":27,\"condition\":\"clear\"}\n{\"day\":\"2026-04-10\",\"site\":\"east\",\"scheduled\":27,\"completed\":26,\"condition\":\"fog\"}\n{\"day\":\"2026-04-11\",\"site\":\"west\",\"scheduled\":38,\"completed\":25,\"condition\":\"rain\"}\n{\"day\":\"2026-04-12\",\"site\":\"north\",\"scheduled\":30,\"completed\":24,\"condition\":\"wind\"}\n{\"day\":\"2026-04-13\",\"site\":\"east\",\"scheduled\":41,\"completed\":23,\"condition\":\"clear\"}\n{\"day\":\"2026-04-14\",\"site\":\"west\",\"scheduled\":33,\"completed\":22,\"condition\":\"fog\"}\n{\"day\":\"2026-04-15\",\"site\":\"north\",\"scheduled\":25,\"completed\":21,\"condition\":\"rain\"}\n{\"day\":\"2026-04-16\",\"site\":\"east\",\"scheduled\":36,\"completed\":34,\"condition\":\"wind\"}\n{\"day\":\"2026-04-17\",\"site\":\"west\",\"scheduled\":28,\"completed\":33,\"condition\":\"clear\"}\n{\"day\":\"2026-04-18\",\"site\":\"north\",\"scheduled\":39,\"completed\":32,\"condition\":\"fog\"}\n{\"day\":\"2026-04-19\",\"site\":\"east\",\"scheduled\":31,\"completed\":31,\"condition\":\"rain\"}\n{\"day\":\"2026-04-20\",\"site\":\"west\",\"scheduled\":23,\"completed\":30,\"condition\":\"wind\"}\n{\"day\":\"2026-04-21\",\"site\":\"north\",\"scheduled\":34,\"completed\":29,\"condition\":\"clear\"}\n{\"day\":\"2026-04-22\",\"site\":\"east\",\"scheduled\":26,\"completed\":28,\"condition\":\"fog\"}\n{\"day\":\"2026-04-23\",\"site\":\"west\",\"scheduled\":37,\"completed\":27,\"condition\":\"rain\"}\n{\"day\":\"2026-04-24\",\"site\":\"north\",\"scheduled\":29,\"completed\":26,\"condition\":\"wind\"}\n{\"day\":\"2026-04-25\",\"site\":\"east\",\"scheduled\":40,\"completed\":25,\"condition\":\"clear\"}\n{\"day\":\"2026-04-26\",\"site\":\"west\",\"scheduled\":32,\"completed\":24,\"condition\":\"fog\"}\n{\"day\":\"2026-04-27\",\"site\":\"north\",\"scheduled\":24,\"completed\":23,\"condition\":\"rain\"}\n{\"day\":\"2026-04-28\",\"site\":\"east\",\"scheduled\":35,\"completed\":22,\"condition\":\"wind\"}\n{\"day\":\"2026-04-29\",\"site\":\"west\",\"scheduled\":27,\"completed\":21,\"condition\":\"clear\"}\n{\"day\":\"2026-04-30\",\"site\":\"north\",\"scheduled\":38,\"completed\":34,\"condition\":\"fog\"}\n{\"day\":\"2026-05-01\",\"site\":\"east\",\"scheduled\":30,\"completed\":33,\"condition\":\"rain\"}\n{\"day\":\"2026-05-02\",\"site\":\"west\",\"scheduled\":41,\"completed\":32,\"condition\":\"wind\"}\n{\"day\":\"2026-05-03\",\"site\":\"north\",\"scheduled\":33,\"completed\":31,\"condition\":\"clear\"}\n{\"day\":\"2026-05-04\",\"site\":\"east\",\"scheduled\":25,\"completed\":30,\"condition\":\"fog\"}\n{\"day\":\"2026-05-05\",\"site\":\"west\",\"scheduled\":36,\"completed\":29,\"condition\":\"rain\"}\n{\"day\":\"2026-05-06\",\"site\":\"north\",\"scheduled\":28,\"completed\":28,\"condition\":\"wind\"}\n{\"day\":\"2026-05-07\",\"site\":\"east\",\"scheduled\":39,\"completed\":27,\"condition\":\"clear\"}\n{\"day\":\"2026-05-08\",\"site\":\"west\",\"scheduled\":31,\"completed\":26,\"condition\":\"fog\"}\n{\"day\":\"2026-05-09\",\"site\":\"north\",\"scheduled\":23,\"completed\":25,\"condition\":\"rain\"}\n{\"day\":\"2026-05-10\",\"site\":\"east\",\"scheduled\":34,\"completed\":24,\"condition\":\"wind\"}\n{\"day\":\"2026-05-11\",\"site\":\"west\",\"scheduled\":26,\"completed\":23,\"condition\":\"clear\"}\n{\"day\":\"2026-05-12\",\"site\":\"north\",\"scheduled\":37,\"completed\":22,\"condition\":\"fog\"}\n{\"day\":\"2026-05-13\",\"site\":\"east\",\"scheduled\":29,\"completed\":21,\"condition\":\"rain\"}\n{\"day\":\"2026-05-14\",\"site\":\"west\",\"scheduled\":40,\"completed\":34,\"condition\":\"wind\"}\n{\"day\":\"2026-05-15\",\"site\":\"north\",\"scheduled\":32,\"completed\":33,\"condition\":\"clear\"}\n{\"day\":\"2026-05-16\",\"site\":\"east\",\"scheduled\":24,\"completed\":32,\"condition\":\"fog\"}\n{\"day\":\"2026-05-17\",\"site\":\"west\",\"scheduled\":35,\"completed\":31,\"condition\":\"rain\"}\n{\"day\":\"2026-05-18\",\"site\":\"north\",\"scheduled\":27,\"completed\":30,\"condition\":\"wind\"}\n{\"day\":\"2026-05-19\",\"site\":\"east\",\"scheduled\":38,\"completed\":29,\"condition\":\"clear\"}\n{\"day\":\"2026-05-20\",\"site\":\"west\",\"scheduled\":30,\"completed\":28,\"condition\":\"fog\"}\n{\"day\":\"2026-05-21\",\"site\":\"north\",\"scheduled\":41,\"completed\":27,\"condition\":\"rain\"}\n{\"day\":\"2026-05-22\",\"site\":\"east\",\"scheduled\":33,\"completed\":26,\"condition\":\"wind\"}\n{\"day\":\"2026-05-23\",\"site\":\"west\",\"scheduled\":25,\"completed\":25,\"condition\":\"clear\"}\n{\"day\":\"2026-05-24\",\"site\":\"north\",\"scheduled\":36,\"completed\":24,\"condition\":\"fog\"}\n{\"day\":\"2026-05-25\",\"site\":\"east\",\"scheduled\":28,\"completed\":23,\"condition\":\"rain\"}\n{\"day\":\"2026-05-26\",\"site\":\"west\",\"scheduled\":39,\"completed\":22,\"condition\":\"wind\"}\n{\"day\":\"2026-05-27\",\"site\":\"north\",\"scheduled\":31,\"completed\":21,\"condition\":\"clear\"}",
+  "first_order": [
+    "field",
+    "etl",
+    "study",
+    "audit",
+    "memo",
+    "sync"
+  ],
+  "second_order": [
+    "sync",
+    "memo",
+    "audit",
+    "study",
+    "etl",
+    "field"
+  ]
+}

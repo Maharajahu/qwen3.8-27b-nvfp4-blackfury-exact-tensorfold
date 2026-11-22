@@ -1,0 +1,29 @@
+{
+  "upstream_commit": "6e9af930261a88bb28ac0bfb157ce8e57e9eea07",
+  "qualified_runtime": {
+    "bytes": 55613952,
+    "sha256": "0742736bdb430e5a4d25cc300beee759a79278b62d406a2fc9331972ea98a5bf"
+  },
+  "native_build_inputs": {
+    "file": "blackfury-exact-v1.0.2-native-build-inputs.zip",
+    "bytes": 9784223,
+    "sha256": "b37895dc6efbbd522018b3c00c82cb326ca1473961ad794bf8001617e2218fca",
+    "overlay_modified_files": 132,
+    "overlay_added_files": 85,
+    "pinned_cuda_library_images": 114
+  },
+  "clean_checkout_build": {
+    "platform": "Windows x64",
+    "zig": "0.17.0",
+    "optimization": "ReleaseFast",
+    "device_images": "Packaged precompiled CUDA images",
+    "build_steps_passed": 15,
+    "build_steps_total": 15,
+    "test_environment_host_passed": 16,
+    "test_qwen35_attention_path_host_passed": 29,
+    "executable_bytes": 55613952,
+    "executable_sha256": "73b0fd9be5da2aa238b86f7086126eb677bdaef48a4e164cec96c125d9a1f1ff",
+    "executable_sha256_matches_measured_image": false,
+    "gpu_benchmark_run_on_rebuild": false
+  }
+}

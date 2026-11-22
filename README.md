@@ -1,95 +1,54 @@
-<h1 align="center">BLACKFURY Exact V 1.0.1</h1>
-<p align="center"><strong>Qwen3.8-27B NVFP4 + DFlash2 on one RTX 5090 32 GB</strong><br>131,072-token context · Single-stream inference · All active inference state in GPU VRAM</p>
-<p align="center"><strong>309.53 tok/s warm decode at 129,024 input + 2,048 output tokens</strong><br>Released 17 November 2026</p>
+<h1 align="center">BLACKFURY Exact v1.0.2</h1>
+<p align="center"><strong>Qwen3.8-27B NVFP4 with DFlash2 on one RTX 5090</strong><br>Native TensorFold CUDA inference for Windows · 131,072-token context · FP8 KV cache</p>
 
 <p align="center">
-  <a href="#install"><img src="https://img.shields.io/badge/Build-V_1.0.1-77e7f4?style=for-the-badge&amp;logo=windows&amp;logoColor=white" alt="Build and run BLACKFURY Exact V 1.0.1"></a>
-  <a href="#watch"><img src="https://img.shields.io/badge/Watch-Live_coding-77e7f4?style=for-the-badge" alt="Watch the latest live coding session"></a>
-  <a href="#performance"><img src="https://img.shields.io/badge/Compare-Performance-30363d?style=for-the-badge" alt="Compare V 1.0.1 with BLACKFURY Exact"></a>
-  <a href="#documentation"><img src="https://img.shields.io/badge/Read-Documentation-30363d?style=for-the-badge" alt="Read the build guide, measurements and release notes"></a>
+  <a href="https://github.com/Maharajahu/qwen3.8-27b-nvfp4-blackfury-exact-tensorfold/releases/tag/v1.0.2"><img src="https://img.shields.io/badge/Download-v1.0.2-77e7f4?style=for-the-badge" alt="Download BLACKFURY Exact v1.0.2"></a>
+  <a href="#measurements"><img src="https://img.shields.io/badge/View-Measurements-30363d?style=for-the-badge" alt="View measurements"></a>
+  <a href="README-v1.0.1.md"><img src="https://img.shields.io/badge/Previous-v1.0.1-30363d?style=for-the-badge" alt="Previous release and recordings"></a>
   <a href="https://x.com/ToolBraidComp"><img src="https://img.shields.io/badge/Follow-%40ToolBraidComp-111111?style=for-the-badge&amp;logo=x&amp;logoColor=white" alt="Follow ToolBraid on X"></a>
-  <a href="https://buymeacoffee.com/dumitrescup"><img src="https://img.shields.io/badge/Buy_me_a_coffee-FFDD00?style=for-the-badge&amp;logo=buymeacoffee&amp;logoColor=000000" alt="Optional support via Buy Me a Coffee"></a>
+  <a href="https://buymeacoffee.com/dumitrescup"><img src="https://img.shields.io/badge/Buy_me_a_coffee-FFDD00?style=for-the-badge&amp;logo=buymeacoffee&amp;logoColor=000000" alt="Support the project"></a>
 </p>
-<p align="center">Built on <a href="https://github.com/ashhart/TensorFold"><strong>TensorFold</strong></a>, created by <a href="https://github.com/ashhart">Ash (@ashhart)</a> and its contributors.</p>
 
-Run Qwen3.8-27B locally with an OpenAI-compatible API for coding agents and other clients. V 1.0.1 improves long-context generation over the previous BLACKFURY Exact release while keeping the model, drafter and active inference state on one 32 GB GPU.
+BLACKFURY runs a local OpenAI-compatible server for coding agents. During a 14-minute Oh My Pi session, Qwen built an offline viewer that compares NVIDIA Nsight traces. The 32 requests that wrote or edited code averaged **290.20 tok/s decode** and **2,725.61 tok/s fresh prefill**. The session ran with low reasoning effort, a four-bit DFlash2 drafter and a single stream.
 
-## Performance
+## Compared with v1.0.1
 
-### Compared with BLACKFURY Exact
+| Generated output | v1.0.1 | v1.0.2 | Change |
+|---|---:|---:|---:|
+| Prose | 214.25 tok/s | 224.73 tok/s | +4.9% |
+| Source code | 343.23 tok/s | 359.81 tok/s | +4.8% |
 
-| Measurement | BLACKFURY Exact | V 1.0.1 |
-|---|---:|---:|
-| Warm decode median, DFlash2 enabled | 280.88 tok/s | **309.53 tok/s (+10.20%)** |
-| Cold prefill | 50.435 s | 50.368 s |
-| Warm first-token latency, median | 0.235 s | 0.236 s |
+Three prose prompts and three source-generation prompts were run twice per version on one RTX 5090. Each request had 1,992–2,001 fresh input tokens and generated 1,024 tokens, including reasoning. The four engine launches ran in A–B–B–A order, with the prompt order reversed on the second pass. All 12 cross-version pairs produced identical output token IDs. Fresh prefill on these short inputs averaged 3,825.06 tok/s in v1.0.1 and 3,823.01 tok/s in v1.0.2. [Matched workloads and timings](results/blackfury-v1.0.2/prose-code-comparison.json) · [Prompts](results/blackfury-v1.0.2/prose-code-prompts.json)
 
-Same prompt, **129,024 input + 2,048 output tokens**, one stream, thinking LOW and greedy decoding on Windows / RTX 5090 32 GB. The **+10.20%** is the difference between published medians from separate runs on 15 and 17 November; prefill and first-token latency are approximately unchanged. Decode rates exclude prefill and model loading. [Benchmark conditions and results](docs/blackfury-stage44.md#controlled-full-context-result) · [Previous release measurements](docs/blackfury-exact.md#controlled-128k-single-stream-test).
+On the archived 129,024-token prompt, median decode after cold prefill rose from **305.32 to 333.30 tok/s (+9.2%)**, warm decode rose from **309.53 to 330.77 tok/s (+6.9%)**, and cold prefill took **48.48 s**, down from **50.37 s**. These were separate qualification runs using identical request contents and cache conditions. All samples produced the same 2,048 output token IDs. [Per-run timings and token hashes](results/blackfury-v1.0.2/long-context-comparison.json)
 
-### Filmed coding sessions
+## Run on Windows
 
-| Measurement | BLACKFURY Exact | V 1.0.1 |
-|---|---:|---:|
-| Weighted decode rate | 330.37 tok/s | **376.54 tok/s** |
-| Approximately one-second sampled peak | 734.17 tok/s | **753.29 tok/s** |
-
-These are separate coding sessions with different context lengths and request histories. The peak is a short sample; neither row is a controlled speedup comparison. [Session details and timing definitions](docs/blackfury-stage44.md#real-coding-demonstration).
-
-## Watch
-
-- **[Live coding session — 6 min 03 s](https://github.com/Maharajahu/qwen3.8-27b-nvfp4-blackfury-exact-tensorfold/releases/download/demos-2026-11/blackfury-exact-v1.0.1-live-1080p60.mp4)**
-- **[Generated scene — 20 s](https://github.com/Maharajahu/qwen3.8-27b-nvfp4-blackfury-exact-tensorfold/releases/download/demos-2026-11/blackfury-exact-v1.0.1-scene-1080p60.mp4)**
-
-A real [Oh My Pi](https://github.com/can1357/oh-my-pi) coding-agent session producing a stylized Three.js castle. Both recordings are **1080p / 60 fps, normal speed**.
-
-## Install
-
-### Requirements
-
-- **Windows x64, RTX 5090 and 32 GB VRAM.** Other platforms have not been qualified.
-- Git, **Python 3.11+**, **Zig 0.17.0** and **CUDA Toolkit 13.3**.
-- Visual Studio 2022 C++ Build Tools, a Windows SDK and **NVTX3 headers**.
-
-Prepare the Python environment in PowerShell:
+1. Download and extract [the Windows x64 SM120a runtime](https://github.com/Maharajahu/qwen3.8-27b-nvfp4-blackfury-exact-tensorfold/releases/download/v1.0.2/blackfury-exact-v1.0.2-windows-x64-sm120a.zip). Use Python 3.11+ and an RTX 5090 with 32 GB of VRAM and a compatible NVIDIA driver.
+2. Obtain the target and drafter checkpoints listed in the [model manifest](models-manifest.json). If you already have this repository's model setup, reuse those directories.
+3. From the extracted directory, start the server with the paths to your local checkpoints.
 
 ```powershell
-git clone https://github.com/Maharajahu/qwen3.8-27b-nvfp4-blackfury-exact-tensorfold.git
-cd qwen3.8-27b-nvfp4-blackfury-exact-tensorfold
-python -m venv .venv
-& .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+python launch.py --model-path 'C:\models\Qwen3.8-27B-NVFP4' --drafter-path 'C:\models\Qwen3.8-27B-DFlash2'
 ```
 
-Continue with the **[V 1.0.1 build and launch guide](variants/blackfury-stage44/README.md)** to download or reuse the pinned checkpoints, build the engine and start the server. Use `.\.venv\Scripts\python.exe` for the guide's Python commands. Run one engine variant at a time.
+Point your client at `http://127.0.0.1:18830/v1` and select `blackfury-exact-v1.0.2`. The model weights are distributed separately. Find the checksums and build inputs on the [release page](https://github.com/Maharajahu/qwen3.8-27b-nvfp4-blackfury-exact-tensorfold/releases/tag/v1.0.2).
 
-| Client setting | Value |
-|---|---|
-| OpenAI-compatible base URL | `http://127.0.0.1:18230/v1` |
-| Model ID | `blackfury-exact-v1.0.1` |
-| Defaults | One stream, 131,072-token context, thinking LOW, DFlash2 enabled |
+## Measurements
 
-Connect your client once the server reports healthy. The native server runs independently of OMP.
+| Workload | Decode (tok/s) | Fresh prefill (tok/s) |
+|---|---:|---:|
+| Fixed prompt, 129,024 input + 2,048 output, three cold requests | 333.33 | — |
+| Coding requests with file writes or edits, 32 requests | 290.20 | 2,725.61 |
+| Coding requests with at least 90,000 input tokens, 8 of the 32 | 277.22 | 2,699.75 |
+| Complete agent session, 99 model requests | 274.38 | 2,701.71 |
 
-**Release status:** Experimental. V 1.0.1 uses approximate FP8 attention and has a known prefill validation issue under investigation. Read the [numerical behavior and known limitations](docs/blackfury-stage44.md#source-build-and-limitations) before use.
+The first agent prompt processed **109,211 fresh tokens in 39.27 s**. The largest input was 111,600 tokens. Across 99 requests the model generated 86,553 tokens and OMP compacted its context twice. An independent reviewer reported two issues during the session. Qwen fixed the clock alignment and round selection. The final viewer passed 27 tests and matched all 40 numeric reference values, including a held-out capture.
 
-<a id="verify"></a>
+Decode uses output-token intervals and native decode time. Fresh prefill divides newly processed prompt tokens by native prefill time. Both rates exclude tool execution. [Coding measurements](results/blackfury-v1.0.2/omp-coding.json) · [Release engineering and qualification](docs/blackfury-v1.0.2.md)
 
-## Documentation
+## Previous releases and credits
 
-- [Build, configure and run V 1.0.1](variants/blackfury-stage44/README.md)
-- [Benchmarks, methodology and release notes](docs/blackfury-stage44.md)
-- [Reproduce and verify the published measurements](results/blackfury-stage44/README.md)
-- [Model revisions and download verification](models-manifest.json)
+[BLACKFURY Exact v1.0.1 with install guide, benchmarks and recordings](README-v1.0.1.md) · [BLACKFURY Exact](variants/blackfury-exact/README.md) · [Twelve-branch engine](variants/experimental12/README.md) · [Shared-context agent](variants/shared-context/demo/README.md)
 
-<a id="previous-versions"></a>
-
-Previous releases: [BLACKFURY Exact](variants/blackfury-exact/README.md) · [Twelve-branch engine](variants/experimental12/README.md) · [Shared-context agent](variants/shared-context/demo/README.md) · [Earlier measurements](docs/measurements.md) · [Earlier recordings](docs/videos.md).
-
-## Credits
-
-Powered by TensorFold, with models from the Qwen team / Alibaba, NVIDIA and the DFlash contributors. The coding demo uses Oh My Pi and Three.js. [Full credits and source attribution](CREDITS.md).
-
-## License and support
-
-Local code and changes are provided under [Apache-2.0](LICENSE). Upstream notices are retained in [licenses/TensorFold](licenses/TensorFold); models and dependencies retain their own licenses. No model weights or prebuilt executables are included.
-
-[Report an issue](https://github.com/Maharajahu/qwen3.8-27b-nvfp4-blackfury-exact-tensorfold/issues/new) with your hardware, version and relevant error.
+Built on [TensorFold](https://github.com/ashhart/TensorFold) by Ash (@ashhart) and its contributors. Model and drafter attribution is in [CREDITS.md](CREDITS.md). Local changes are licensed under [Apache-2.0](LICENSE). [Upstream and third-party notices](licenses/TensorFold) apply to their respective components.

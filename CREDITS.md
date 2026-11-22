@@ -6,13 +6,13 @@ These experiments start with [TensorFold](https://github.com/ashhart/TensorFold)
 
 All native patches apply to upstream commit [`6e9af930261a88bb28ac0bfb157ce8e57e9eea07`](https://github.com/ashhart/TensorFold/tree/6e9af930261a88bb28ac0bfb157ce8e57e9eea07), version 1.2.6. The inference engine, model support and existing kernels are upstream work. See TensorFold's [own contributor credits](https://github.com/ashhart/TensorFold/blob/6e9af930261a88bb28ac0bfb157ce8e57e9eea07/docs/credits.md) for the authors of its individual components.
 
-The exact local changes are available as independent variant patches, with source hashes and reconstruction notes in [engine-manifest.json](engine-manifest.json). Upstream licenses and attribution are preserved in [licenses/TensorFold](licenses/TensorFold).
+The [v1.0.2 release](https://github.com/Maharajahu/qwen3.8-27b-nvfp4-blackfury-exact-tensorfold/releases/tag/v1.0.2) ships a native source overlay and pinned CUDA build inputs. Earlier variants are distributed as independent patches with source hashes and reconstruction notes in [engine-manifest.json](engine-manifest.json). Upstream licenses and attribution are preserved in [licenses/TensorFold](licenses/TensorFold).
 
 Stage44's inherited SM120 FP8 attention generator is derived from NVIDIA cuDNN/CuTe code. Its retained source carries NVIDIA's Apache-2.0 copyright/license headers under [attention-source](variants/blackfury-stage44/attention-source/). The paired FP4 projection reuses TensorFold's existing FP4 arithmetic body. These origins are distinct from the local dispatch, integration and benchmark work. Installed CUDA/NVTX headers and tools retain their own terms.
 
 ## Agent, model and drafter
 
-- **Oh My Pi:** [@can1357, Stencil Labs and contributors](https://github.com/can1357/oh-my-pi), for the coding-agent terminal, conversation handling and extension system. The package uses 18.18.8, commit [`679691a78141de0dd6ba1b7a5d5c1b1d7d967a63`](https://github.com/can1357/oh-my-pi/commit/679691a78141de0dd6ba1b7a5d5c1b1d7d967a63).
+- **Oh My Pi:** [@can1357, Stencil Labs and contributors](https://github.com/can1357/oh-my-pi), for the coding-agent terminal, conversation handling and extension system. The v1.0.2 coding session used Oh My Pi 18.20.2. The earlier packaged harness uses 18.18.8, commit [`679691a78141de0dd6ba1b7a5d5c1b1d7d967a63`](https://github.com/can1357/oh-my-pi/commit/679691a78141de0dd6ba1b7a5d5c1b1d7d967a63).
 - **Base model:** the [Qwen team / Alibaba](https://huggingface.co/Qwen/Qwen3.8-27B), for Qwen3.8-27B.
 - **NVFP4 checkpoint:** [NVIDIA](https://huggingface.co/nvidia/Qwen3.8-27B-NVFP4), for the quantized checkpoint. The tested revision is [`482ca0f3832238542f8f5295dde86b5f22711d80`](https://huggingface.co/nvidia/Qwen3.8-27B-NVFP4/tree/482ca0f3832238542f8f5295dde86b5f22711d80).
 - **DFlash 2:** [Inco AI](https://inco.ai/blog/dflash2/), for the speculative draft model. The experiment downloads the [Z Lab mirror](https://huggingface.co/z-lab/Qwen3.8-27B-DFlash2) at revision [`50307d4c4cde6860d4eee73e2547cd786fe8e8a4`](https://huggingface.co/z-lab/Qwen3.8-27B-DFlash2/tree/50307d4c4cde6860d4eee73e2547cd786fe8e8a4).
