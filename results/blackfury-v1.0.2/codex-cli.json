@@ -1,0 +1,71 @@
+{
+  "release": "BLACKFURY Exact v1.0.2",
+  "binary_sha256": "0742736bdb430e5a4d25cc300beee759a79278b62d406a2fc9331972ea98a5bf",
+  "client": "Codex CLI 0.171.0-alpha.13",
+  "model": "Qwen3.8-27B NVFP4",
+  "backend": "TensorFold native CUDA",
+  "hardware": "One RTX 5090 32 GB",
+  "context_window_tokens": 131072,
+  "kv_cache": "FP8",
+  "reasoning_effort": "low",
+  "drafter": "4-bit DFlash2",
+  "task": "Build a Python CLI and an offline interactive HTML report from two GPU traces, clock-aligned NVML telemetry, and request records. Compare prefill and decode activity and inspect individual decode rounds.",
+  "recording": {
+    "public_thread": "https://x.com/ToolBraidComp/status/2124567982818922611",
+    "result_demo_seconds": 32.55
+  },
+  "timing": {
+    "wall_seconds": 666.4316222667694,
+    "completed_model_calls_wall_seconds": 594.2922587394714,
+    "outside_completed_model_calls_seconds": 72.13936352729797,
+    "native_decode_seconds": 385.429,
+    "active_fresh_prefill_seconds": 205.783379,
+    "weighted_decode_tok_s": 277.29620760243785,
+    "weighted_fresh_prefill_tok_s": 2576.5054620859346,
+    "wall_output_tok_s": 160.55510636794003
+  },
+  "totals": {
+    "model_requests": 121,
+    "output_tokens": 106999,
+    "tool_calls": 125,
+    "browser_tool_calls": 40,
+    "fresh_input_tokens": 530202,
+    "cached_input_token_uses": 7927808,
+    "cached_share": 0.9373136234173287,
+    "peak_input_tokens": 105465
+  },
+  "compaction": {
+    "count": 1,
+    "elapsed_seconds": 330.79462242126465,
+    "previous_request_input_tokens": 105465,
+    "next_request_input_tokens": 16970
+  },
+  "drafts": {
+    "accepted_tokens": 86443,
+    "verified_tokens": 189841,
+    "accepted_share": 0.4553442091013006
+  },
+  "peak_request": {
+    "request_index": 16,
+    "decode_tok_s": 705.009884210893,
+    "input_tokens": 77951,
+    "cached_input_tokens": 72704,
+    "output_tokens": 1529,
+    "accepted_draft_tokens": 1421,
+    "verified_draft_tokens": 1506
+  },
+  "verification": {
+    "tests_passed": 19,
+    "tests_total": 19,
+    "independent_reference_checks_passed": 20,
+    "independent_reference_checks_total": 20
+  },
+  "definitions": {
+    "weighted_decode_tok_s": "Output-token intervals summed over completed requests, divided by total native decode time. Output includes reasoning and tool syntax.",
+    "weighted_fresh_prefill_tok_s": "Fresh input tokens divided by the engine counter for active prefill time.",
+    "wall_output_tok_s": "All output tokens divided by the recorded session duration, which includes tools and client time.",
+    "completed_model_calls_wall_seconds": "Sum of proxy request start to streamed completion intervals for completed model calls.",
+    "cached_share": "Cumulative cached input token uses divided by cumulative input tokens across completed requests.",
+    "accepted_share": "Accepted draft tokens divided by verified draft tokens across completed requests."
+  }
+}
