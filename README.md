@@ -8,6 +8,8 @@
 </p>
 <p align="center"><a href="https://github.com/Maharajahu/qwen3.8-27b-nvfp4-blackfury-exact-tensorfold/releases/tag/v1.0.2">Release notes</a> · <a href="#codex-cli-run">Codex CLI demo</a> · <a href="#measurements">Oh My Pi benchmarks</a> · <a href="README-v1.0.1.md#watch">v1.0.1 videos</a> · <a href="https://x.com/ToolBraidComp/status/2124567982818922611">Release thread on X</a> · <a href="https://buymeacoffee.com/dumitrescup">Buy me a coffee</a></p>
 
+<p align="center"><img src="assets/blackfury-exact-logo.png" width="680" alt="BLACKFURY Exact Exploded Stack logo"></p>
+
 BLACKFURY serves Qwen locally through an OpenAI-compatible API. In v1.0.2 the FP4 gate/up projections use native packed conversion, and the FP8 QKV and Z projections run in a single CUDA kernel launch. On matched prompts, these changes and the updated release profile delivered **359.81 tok/s for source code (+4.8%)** and **224.73 tok/s for prose (+4.9%)** over v1.0.1.
 
 ## Compared with v1.0.1
